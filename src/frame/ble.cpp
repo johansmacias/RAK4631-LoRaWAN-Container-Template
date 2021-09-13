@@ -216,6 +216,8 @@ void settings_rx_callback(uint16_t conn_hdl, BLECharacteristic *chr, uint8_t *da
 	// Check the characteristic
 	if (chr->uuid == lora_data.uuid)
 	{
+		uint8_t keep_lora_region;
+
 		if (len != sizeof(s_lorawan_settings))
 		{
 			MYLOG("SETT", "Received settings have wrong size %d", len);
@@ -231,6 +233,8 @@ void settings_rx_callback(uint16_t conn_hdl, BLECharacteristic *chr, uint8_t *da
 
 		// Save new LoRa settings
 		memcpy((void *)&g_lorawan_settings, data, sizeof(s_lorawan_settings));
+
+		g_lorawan_settings.lora_region = keep_lora_region; // To keep the value after receiving config from My-nRF52-Toolbox
 
 		// Save new settings
 		save_settings();
