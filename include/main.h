@@ -117,7 +117,7 @@ struct s_lorawan_settings
 	// LoRaWAN class 0: A, 2: C, 1: B is not supported
 	uint8_t lora_class = 0;
 	// Subband channel selection 1 .. 9
-	uint8_t subband_channels = 1;
+	uint8_t subband_channels = 2; // Select Sub-Band 2 as default for Helium focused alternative.
 	// Data port to send data
 	uint8_t app_port = 2;
 	// Flag to enable confirmed messages
@@ -125,7 +125,7 @@ struct s_lorawan_settings
 	// Command from BLE to reset device
 	bool resetRequest = true;
 	// LoRa region
-	uint8_t lora_region = 0;
+	uint8_t lora_region = 8; // Set US915 as default for Helium focused alternative.
 };
 
 // int size = sizeof(s_lorawan_settings);
