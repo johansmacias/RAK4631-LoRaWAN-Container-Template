@@ -231,10 +231,12 @@ void settings_rx_callback(uint16_t conn_hdl, BLECharacteristic *chr, uint8_t *da
 			return;
 		}
 
+		keep_lora_region = g_lorawan_settings.lora_region; // To keep the value after receiving config from My-nRF52-Toolbox
+
 		// Save new LoRa settings
 		memcpy((void *)&g_lorawan_settings, data, sizeof(s_lorawan_settings));
 
-		g_lorawan_settings.lora_region = keep_lora_region; // To keep the value after receiving config from My-nRF52-Toolbox
+		g_lorawan_settings.lora_region = keep_lora_region; // Retrieve the value
 
 		// Save new settings
 		save_settings();
